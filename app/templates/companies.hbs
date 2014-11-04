@@ -4,7 +4,11 @@
 	{{/each}}
 </ul>
 
-{{bubble-chart data=chartData}}
+{{view Ember .Select
+	content=items
+	value=selectedItem}}
+
+{{bubble-chart data=chartData action='selectCompany' selectedBubble=selectedCompanyIndex}}
 
 <div class="detail">
 	{{outlet}}

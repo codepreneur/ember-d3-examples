@@ -8,5 +8,12 @@ export default Ember.Route.extend({
 			{id: 3, name: 'Acme Corp', revenue: 6714, cost: 2990},
 			{id: 4, name: 'Dunder Mifflin', revenue: 743, cost: 1304},
 		]; 
+	},
+
+	actions: {
+		selectCompany: function(i){
+			this.transitionTo('company', this.controller.objectAt(i));
+		}
 	}
+
 });

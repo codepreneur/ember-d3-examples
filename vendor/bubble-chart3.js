@@ -10,12 +10,11 @@ d3.charts.bubble = function() {
 	.sort(null)
 	.size([diameter-margin.left, diameter-margin.top])
 	.padding(1.5),
+	emptyMessage = 'No data',
+	nodes;
 
-      // Enhancement: empty data
-      emptyMessage = 'No data';
-
-      function chart(selection) {
-      	selection.each(function(data) {
+	function chart(selection) {
+		selection.each(function(data) {
 
       // Select the svg element, if it exists.
       var svg = d3.select(this).selectAll("svg").data([
@@ -32,7 +31,6 @@ d3.charts.bubble = function() {
       var g = svg.select("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      // Enhancement: empty data
       if (!data.children.length) {
       	g.html('')
       	.append('text')
@@ -45,7 +43,7 @@ d3.charts.bubble = function() {
 
       /* Nodes
       ************/
-      var nodes = svg.select('g').selectAll(".node")
+      nodes = svg.select('g').selectAll(".node")
       .data(function(d) { return d; }, function(d) {return d.className;});
 
       // Enter
@@ -56,10 +54,9 @@ d3.charts.bubble = function() {
       nodesEnter.append("title")
       .text(function(d) { return d.className + ": " + format(d.value); });
       nodesEnter.append("circle")
-        // .style("fill", function(d) { return color(d.packageName); })
-        .style("fill", function(d) { return '#FF9C4F'; })
-        .attr("r", 0);
-        nodesEnter.append("text");
+      .style("fill", function(d) { return '#FF9C4F'; })
+      .attr("r", 0);
+      nodesEnter.append("text");
 
 
       // Merge
@@ -79,7 +76,6 @@ d3.charts.bubble = function() {
       nodesExit.select("text").attr('opacity', 0);
       nodesExit.remove();
 
-
     });
 }
 
@@ -95,23 +91,31 @@ function classes(root) {
 	return {children: _classes};
 }
 
-chart.margin = function(_) {
-	if (!arguments.length) return margin;
+  /*
+    Enhancement
+    */
+    chart.selectItem = function(index) {
+    	nodes.classed('active', function(d, i) {
+    		return i === index;
+    	});
+    };
 
-	margin = _;
-	bubble.size([diameter-margin.left, diameter-margin.top]);
+    chart.margin = function(_) {
+    	if (!arguments.length) return margin;
 
-	return chart;
-};
+    	margin = _;
+    	bubble.size([diameter-margin.left, diameter-margin.top]);
 
-  // Enhancement: empty data
-  chart.emptyMessage = function(_) {
-  	if (!arguments.length) return emptyMessage;
+    	return chart;
+    };
 
-  	emptyMessage = _;
+    chart.emptyMessage = function(_) {
+    	if (!arguments.length) return emptyMessage;
 
-  	return chart;
+    	emptyMessage = _;
+
+    	return chart;
+    };
+
+    return chart;
   };
-
-  return chart;
-};
