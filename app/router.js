@@ -10,6 +10,7 @@ Router.map(function() {
 		this.resource('company', {path: '/:company_id'});
 	});
   this.route('bar-chart');
+  this.route('donut-chart');
 });
 
 export default Router;

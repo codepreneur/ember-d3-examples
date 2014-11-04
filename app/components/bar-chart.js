@@ -31,7 +31,7 @@ export default Ember.Component.extend({
 		.call(yAxis)
 		.append('text')
 		.attr('transform','rotate(-90)')
-		.attr('y', 0)
+		.attr('y', 6)
 		.attr('dy', '.71em')
 		.style('text-anchor', 'end')
 		.text('Frequency');
@@ -43,8 +43,15 @@ export default Ember.Component.extend({
 		.attr('x', function(d){ return x(d.letter); })
 		.attr('width', x.rangeBand())
 		.attr('y', function(d){ return y(d.frequency); })
-		.attr('height', function(d){ return height - y(d.frequency); });
+		.attr('height', function(d){ return height - y(d.frequency); })
+		.attr('class', function(d) { return d.letter; });
 
-	}.on('didInsertElement')
+	}.on('didInsertElement'),
+
+	redraw: function(){
+		var svg = d3.select(this.get('element'));
+		svg.selectAll('*').remove();
+		this.draw();
+	}.observes('data.@each.frequency')
 
 });

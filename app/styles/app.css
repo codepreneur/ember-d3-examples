@@ -1,3 +1,40 @@
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.A {
+  fill: #3b5998;
+}
+
+.B {
+  fill: #1ab1e8;
+}
+
+.C {
+  fill: #efaf25;
+}
+
+.D {
+  fill: #ca222d;
+}
+
+.E {
+  fill: #0074b2;
+}
+
+
 body {
   font-family: sans-serif;
   width: 800px;
@@ -32,7 +69,7 @@ body, a, a:focus, a:active {
 }
 
 text {
-  fill: white !important;
+  fill: black !important;
 }
 
 h1 {

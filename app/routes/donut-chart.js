@@ -9,5 +9,5 @@ export default Ember.Route.extend({
 			Ember.Object.create({'letter': 'D', 'frequency': 4253}),
 			Ember.Object.create({'letter': 'E', 'frequency': 12702})
 		]);
-	}
+	}	
 });
