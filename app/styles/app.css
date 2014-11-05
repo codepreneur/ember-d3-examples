@@ -35,6 +35,27 @@
 }
 
 
+.fb { 
+  fill: #3b5998; 
+}
+
+.tw { 
+  fill: #1ab1e8; 
+}
+
+.gp { 
+  fill: #efaf25; 
+}
+
+.pi { 
+  fill: #ca222d; 
+}
+
+.li { 
+  fill: #0074b2; 
+}
+
+
 body {
   font-family: sans-serif;
   width: 800px;

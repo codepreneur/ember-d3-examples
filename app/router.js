@@ -11,6 +11,7 @@ Router.map(function() {
 	});
   this.route('bar-chart');
   this.route('donut-chart');
+  this.route('donut-charts');
 });
 
 export default Router;
